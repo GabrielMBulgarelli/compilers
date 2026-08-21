@@ -1,0 +1,4 @@
+# Compiler binaries and object files
+micro
+micro-sanitize
+*.o
