@@ -1,0 +1,4 @@
+begin
+read(first, second);
+write(first, second);
+end

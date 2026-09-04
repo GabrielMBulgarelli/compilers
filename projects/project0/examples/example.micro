@@ -1,0 +1,6 @@
+begin
+read(first, second);
+sum := first + second;
+choice := (sum | sum | 0);
+write(choice);
+end

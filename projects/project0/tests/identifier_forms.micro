@@ -1,0 +1,5 @@
+begin
+abcdefghijklmnopqrstuvwxyzabcdef := (2147483647);
+a1_b2 := 0 - 2147483647 - 1;
+write(abcdefghijklmnopqrstuvwxyzabcdef, a1_b2);
+end

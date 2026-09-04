@@ -2,3 +2,7 @@
 micro
 micro-sanitize
 *.o
+
+# Generated test outputs
+tests/*.out
+tests/*.s
