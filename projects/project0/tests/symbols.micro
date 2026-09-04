@@ -1,0 +1,7 @@
+begin
+main := 1;
+printf := 2;
+scanf := 3;
+Temp1 := 4;
+write(main, printf, scanf, Temp1);
+end

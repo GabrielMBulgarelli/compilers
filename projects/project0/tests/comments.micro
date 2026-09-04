@@ -1,0 +1,5 @@
+begin
+-- a comment may end at a newline
+x := 5 - 2; -- subtraction is still a single MINUSOP
+write(x);
+end -- final comment may reach EOF
