@@ -105,6 +105,30 @@ No se debe reducir ACK a «compiladores de Pascal» ni concluir que todo P-code 
 | 3 | Fuente C del traductor Fortran→C | Compilarla con el C disponible, idealmente v10. | Traductor Fortran→C. |
 | 4, **si se dispone del fuente Fortran** del compilador COBOL | Traductor Fortran→C y compilador C | Traducir ese fuente a C y compilar el C generado. | Compilador COBOL→máquina ejecutable en Linux, si el código generado y sus bibliotecas son compatibles. |
 
+Un solo esquema de composición para el caso en que (c) incluya **fuente Fortran**:
+
+```mermaid
+flowchart TD
+  V7["C v7 ejecutable en Linux"]
+  S10["Fuente de C v10 escrita en C"]
+  V10["C v10 ejecutable en Linux"]
+  SF["Fuente Fortran→C escrita en C"]
+  FC["Fortran→C ejecutable"]
+  SC["Fuente COBOL→máquina escrita en Fortran"]
+  CC["Fuente COBOL→máquina traducida a C"]
+  BC["COBOL→máquina ejecutable en Linux"]
+  V7 -->|"compila"| S10
+  S10 --> V10
+  V10 -->|"compila"| SF
+  SF --> FC
+  FC -->|"traduce"| SC
+  SC --> CC
+  V10 -->|"compila"| CC
+  CC --> BC
+```
+
+En notación T, las cabezas de los tres traductores finales son `C→máquina`, `Fortran→C` y `COBOL→máquina`; sus pies son respectivamente `C` antes de compilar, `C` antes de compilar y `Fortran` antes de traducir/compilar. Tras obtener los ejecutables, los pies son la plataforma Linux correspondiente. El esquema muestra dependencias; la recompilación opcional de C v10 con sí mismo queda en el paso 2 de la tabla.
+
 **Matiz imprescindible del inciso (c):** el enunciado fotografiado dice «un compilador de Cobol, escrito en Fortran, que genere lenguaje máquina»; **no afirma explícitamente que se entregue su fuente**. Si es ya un binario compatible con Linux y su arquitectura, se ejecuta directamente, sin traducir su implementación. Si es un binario incompatible y no se tiene el fuente Fortran, los archivos (a) y (b) no bastan para reconstruirlo. «Lenguaje máquina» también debe ser el de la arquitectura objetivo deseada; un compilador cruzado podría producir código para otra máquina. El diagrama final debe etiquetar en cada etapa fuente, destino, implementación y máquina anfitriona. [Princeton: problema de arranque de compiladores](https://www.cs.princeton.edu/research/techreps/151); [ejemplo académico de transporte de Pascal y diagramas T](https://www.cs.ru.ac.za/compilerbook/CSharpAndJava/book2005/book2005text/chap03.htm).
 
 ## Quiz 04 — 7 de septiembre
