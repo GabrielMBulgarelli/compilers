@@ -236,3 +236,5 @@ Texto final: «Se pueden hacer compiladores de FORTRAN y Pascal que corren en x8
 ---
 
 **Estado de la secuencia:** páginas **1–19** transcritas; en este archivo se añadieron las páginas **11–19**. La imagen repetida de la página 10 no se duplicó. Las notas de duda identifican trazos o rótulos ambiguos, no correcciones del contenido de clase.
+
+**Continuación:** [páginas 20–28](paginas-20-28-continuacion.md).
