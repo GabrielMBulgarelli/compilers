@@ -139,3 +139,5 @@ Se denota `LM` y se define como `LM = {xw | x ∈ L y w ∈ M}`: se forma concat
 ---
 
 **Estado de la secuencia:** páginas **1–43** transcritas; este archivo incorpora las **39–43**. Las notas de discrepancia distinguen lo escrito en el cuaderno de la formulación matemática correcta.
+
+**Continuación:** [páginas 44–50 y hoja posterior](paginas-44-50-continuacion.md).
