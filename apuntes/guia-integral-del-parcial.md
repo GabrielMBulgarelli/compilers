@@ -4,14 +4,6 @@
 
 **Cómo leer esta guía.** Cada tema presenta primero sus conceptos, después un ejemplo que los utiliza y por último un checklist. Una casilla se marca cuando puedes explicar la respuesta **sin mirar** y comprobarla en un ejemplo nuevo. Cuando un enunciado admite dos interpretaciones, se fija la interpretación antes de resolverlo.
 
-| Parte | Pregunta que resuelve | Temas |
-| --- | --- | --- |
-| I. La computadora | ¿Qué ejecuta la máquina y cómo se programa VOLE? | 1–3 |
-| II. Traductores | ¿Cómo se transforma un programa y cómo se transporta un compilador? | 4–8 |
-| III. Fundamentos formales | ¿Qué son hileras, lenguajes y DFA, y cómo se resuelven problemas? | 9–12 |
-| IV. Lecturas | ¿Qué sostiene cada lectura y qué evidencia usa? | 13–17 |
-| V. Repaso | ¿Qué preguntaron los quices, qué nombres debo distinguir y puedo resolver ejercicios? | 18–20 |
-
 # Parte I. La computadora y sus instrucciones
 
 ## 1. Historia: qué problema resolvió cada avance
@@ -508,11 +500,11 @@ Al añadir el dígito `d` a la **derecha** de un número `n` en **base `b`**, el
 
 | Residuo actual | `D0` | `D1` | `D2` | Acepta |
 | --- | --- | --- | --- | --- |
-| `0`, inicial | `0` | `1` | `2` | Sí, bajo la convención del apunte `ε=0`. |
+| `0`, inicial | `0` | `1` | `2` | Sí* |
 | `1` | `1` | `2` | `0` | No. |
 | `2` | `2` | `0` | `1` | No. |
 
-`12` hace `0→1→0` y acepta; `13` hace `0→1→1` y rechaza. En matemática usual un numeral debe tener por lo menos un dígito; los apuntes **adoptan** para este ejercicio `ε=0`. Si no se admite la hilera vacía, añade un estado inicial no final que al leer el primer dígito entra al estado de residuo correspondiente. Los ceros iniciales no cambian el residuo, pero su admisibilidad también depende del enunciado.
+*El estado `0` acepta `ε` bajo la convención de los apuntes, que toman `ε=0` en este ejercicio.* `12` hace `0→1→0` y acepta; `13` hace `0→1→1` y rechaza. En matemática usual un numeral debe tener por lo menos un dígito; si no se admite la hilera vacía, añade un estado inicial no final que al leer el primer dígito entra al estado de residuo correspondiente. Los ceros iniciales no cambian el residuo, pero su admisibilidad también depende del enunciado.
 
 **Base 3, no divisible entre 5.** `Σ={0,1,2}`, `b=3`, `m=5`; estados `0,…,4`; finales `1,2,3,4`; transición `(3r+d) mod 5`:
 
