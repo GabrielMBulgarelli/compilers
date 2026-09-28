@@ -254,3 +254,5 @@ Ofrece mucha eficiencia y poca productividad.
 ---
 
 **Nota de transcripción.** Se retienen afirmaciones, dudas y fechas del cuaderno (incluido el signo de interrogación sobre COBOL). La palabra después de «150 000» en la página 4 y el apellido «Wilkins» en la página 9 merecen cotejo con el original si se reutilizan como hechos en una guía de estudio.
+
+**Continuación:** [páginas 11–19, semanas I y II](paginas-11-19-continuacion.md).
