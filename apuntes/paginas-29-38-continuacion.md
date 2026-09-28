@@ -265,3 +265,5 @@ Sean `v` y `w` dos hileras sobre `Σ`. Si `v = a₁a₂…aₖ`, `w = b₁b₂�
 ---
 
 **Estado de la secuencia:** páginas **1–38** transcritas; este archivo incorpora las **29–38**. Las dudas, contradicciones y posibles errores técnicos en los originales se conservan como tales. Las lecturas inciertas se identifican entre corchetes.
+
+**Continuación:** [páginas 39–43](paginas-39-43-continuacion.md).
