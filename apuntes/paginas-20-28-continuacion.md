@@ -182,3 +182,5 @@ Los compiladores o ensambladores generan módulos objeto. Esto solo que confunde
 ---
 
 **Estado de la secuencia:** páginas **1–28** transcritas; este archivo incorpora las **20–28**. La página 28 llegó fotografiada dos veces. Las dudas escritas por el autor y las partes de diagramas T que no se pueden leer con seguridad se preservan o señalan; no son explicaciones verificadas del tema.
+
+**Continuación:** [páginas 29–38](paginas-29-38-continuacion.md).
