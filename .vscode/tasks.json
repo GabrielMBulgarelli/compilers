@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MICRO: Run all tests (Linux)",
+      "type": "shell",
+      "command": "bash projects/project0/run-cloud-tests.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "MICRO: Run example (2 + 3)",
+      "type": "shell",
+      "command": "make -C projects/project0 && cd projects/project0 && printf '2 3\\n' | ./micro examples/example.micro",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
