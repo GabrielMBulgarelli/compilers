@@ -35,3 +35,19 @@ jobs:
           output="$(printf '2 3\n' | ./micro examples/example.micro)"
           test "$output" = 5
           file examples/example
+
+      - name: Build Codespaces Docker image
+        run: |
+          docker build --platform linux/amd64 \
+            --tag micro-codespaces:verification \
+            --file .devcontainer/Dockerfile .
+
+      - name: Run all tests inside Codespaces image
+        run: |
+          docker run --rm \
+            --platform linux/amd64 \
+            --user 0:0 \
+            --volume "${GITHUB_WORKSPACE}:/workspace" \
+            --workdir /workspace \
+            micro-codespaces:verification \
+            bash projects/project0/run-cloud-tests.sh
