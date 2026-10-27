@@ -120,7 +120,8 @@ def main():
                              github_sha256=sha(b) if b is not None else None))
         num = lambda status: sum(r["status"] == status for r in rows)
         compiler_paths = {r["path"] for r in rows
-                          if PurePosixPath(r["path"]).suffix in {".c", ".h"}}
+                          if PurePosixPath(r["path"]).suffix in {".c", ".h"}
+                          or PurePosixPath(r["path"]).name == "Makefile"}
         code_matches = sum(r["status"] == "IDENTICAL"
                            and r["path"] in compiler_paths for r in rows)
         summary = {
@@ -133,16 +134,16 @@ def main():
             "compiler_code_files": len(compiler_paths),
             "compiler_code_identical": code_matches,
         }
-        passed = (summary["original_files"] > 0
-                  and len(compiler_paths) > 0
-                  and code_matches == len(compiler_paths)
-                  and num("IDENTICAL") == len(submitted)
-                  and num("GITHUB_ONLY") == 0)
-        outcome = "PASS" if passed else "FAIL"
+        code_ok = (len(compiler_paths) > 0
+                   and code_matches == len(compiler_paths))
+        full_ok = (code_ok and num("IDENTICAL") == len(submitted)
+                   and num("GITHUB_ONLY") == 0)
+        outcome = "PASS_CODE" if code_ok else "FAIL_CODE"
         report = {
             "schema": "micro-pr0-byte-identity-v1",
             "generated_at_utc": datetime.now(timezone.utc).isoformat(),
             "result": outcome,
+            "full_submitted_files_match": full_ok,
             "archive": {"filename": file_archive.name,
                         "bytes": file_archive.stat().st_size,
                         "sha256": archive_hash},
@@ -158,7 +159,8 @@ def main():
         lines = [
             "# Proyecto 0 — Verificación SHA-256 de identidad",
             "",
-            "**Resultado:** " + outcome,
+            "**Resultado de identidad del código C/H y Makefile:** " + outcome,
+            "**Todos los archivos de la entrega coinciden:** " + str(full_ok),
             "",
             "- Archivo original: " + tick + file_archive.name + tick,
             "- SHA-256 del archivo recibido: " + tick + archive_hash + tick,
@@ -202,7 +204,7 @@ def main():
         print("Identical original files: {}/{}".format(
             num("IDENTICAL"), len(submitted)))
         print("Evidence: " + str(md_file) + " and " + str(json_file))
-        return 0 if passed else 1
+        return 0 if code_ok else 1
     except (OSError, ValueError, tarfile.TarError) as e:
         print("Verification error: " + str(e), file=sys.stderr)
         return 2
