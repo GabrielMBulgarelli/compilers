@@ -1,0 +1,53 @@
+name: Project 0 - Linux x86-64
+
+on:
+  push:
+    paths:
+      - 'projects/project0/**'
+      - '.devcontainer/**'
+      - '.github/workflows/project0-linux.yml'
+  pull_request:
+    paths:
+      - 'projects/project0/**'
+      - '.devcontainer/**'
+      - '.github/workflows/project0-linux.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Clang sanitizers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends clang libclang-rt-dev
+      - name: Build and run GNU Make checks
+        working-directory: projects/project0
+        run: make verify
+      - name: Run example program
+        working-directory: projects/project0
+        run: |
+          output="$(printf '2 3\n' | ./micro examples/example.micro)"
+          test "$output" = 5
+          file examples/example
+
+      - name: Build Codespaces Docker image
+        run: |
+          docker build --platform linux/amd64 \
+            --tag micro-codespaces:verification \
+            --file .devcontainer/Dockerfile .
+
+      - name: Run all tests inside Codespaces image
+        run: |
+          docker run --rm \
+            --platform linux/amd64 \
+            --user 0:0 \
+            --volume "${GITHUB_WORKSPACE}:/workspace" \
+            --workdir /workspace \
+            micro-codespaces:verification \
+            bash projects/project0/run-cloud-tests.sh
