@@ -1,0 +1,14 @@
+{
+  "name": "CI0146 Proyecto 0 - MICRO (Linux x86-64)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "make -C projects/project0",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
